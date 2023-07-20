@@ -32,14 +32,33 @@ function showUserOnScreen(user){
 //Delete Button
     var deleteBtn = document.createElement('input');
     deleteBtn.type = 'button';
-    deleteBtn.style.color = 'oragne'
+    deleteBtn.style.backgroundColor = 'orange';
     deleteBtn.value = 'Delete';
 
     deleteBtn.onclick = () => {
         localStorage.removeItem(user.email);
         parentElement.removeChild(childElement);
     }
+    
+//Edit Button
+    var edit = document.createElement('input');
+    edit.type = 'button';
+    edit.style.backgroundColor = 'orange';
+    edit.value = 'Edit';
 
+    edit.onclick = () => {
+        let edituser = JSON.parse(localStorage.getItem(user.email));
+        document.getElementById('name').value=edituser.name;
+        document.getElementById('email').value=edituser.email;
+        document.getElementById('phone').value=edituser.phone;
+        document.getElementById('time').value.edituser.time;
+        document.getElementById('date').value.edituser.date;
+
+        localStorage.removeItem(user.email);
+        parentElement.removeChild(childElement);
+    }
+
+    childElement.appendChild(edit);
     childElement.appendChild(deleteBtn);
     parentElement.appendChild(childElement);
 }
