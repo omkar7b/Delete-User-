@@ -20,7 +20,16 @@ function ongetacall(event) {
     let key = document.getElementById('email').value;
     let uesrJSON = JSON.stringify(user);
     localStorage.setItem(key,uesrJSON);
-    showUserOnScreen(user)
+    
+    axios.post('https://crudcrud.com/api/f6fc7e1152e1431db20b00f111f9c9/appointmentData', user)
+    .then(response => {
+        showUserOnScreen(response.data)
+        console.log(response)
+    })
+    .catch(err => {
+        document.body.innerHTML = document.body.innerHTML + "<h4>Something Went Wrong</h4>"
+        console.log(err);
+    })
 }
 
 //Show User On Screen Function
