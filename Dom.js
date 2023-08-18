@@ -21,7 +21,7 @@ function ongetacall(event) {
     let uesrJSON = JSON.stringify(user);
     localStorage.setItem(key,uesrJSON);
     
-    axios.post('https://crudcrud.com/api/f6fc7e1152e1431db20b00f111f9c9/appointmentData', user)
+    axios.post('https://crudcrud.com/api/f6fc7e1152e1431db20b00f111f9c9bf/appointmentData', user)
     .then(response => {
         showUserOnScreen(response.data)
         console.log(response)
@@ -31,6 +31,20 @@ function ongetacall(event) {
         console.log(err);
     })
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    axios.get('https://crudcrud.com/api/f6fc7e1152e1431db20b00f111f9c9bf/appointmentData')
+    .then(response => {
+        console.log(response)
+
+        for(let i=0;i<response.data.length;i++){
+            showUserOnScreen(response.data[i]);
+        }
+    })
+    .catch(err => {
+        console.log(err);
+    })
+})
 
 //Show User On Screen Function
 function showUserOnScreen(user){
